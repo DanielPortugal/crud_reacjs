@@ -1,0 +1,195 @@
+{
+  "User": [
+    {
+      "id": 1,
+      "nome": "Victor Mesquita 2",
+      "email": "skovhm2@gmail.com",
+      "funcao": "operator"
+    },
+    {
+      "id": 2,
+      "nome": "Victor M2",
+      "email": "skovhm@gmail2.com",
+      "funcao": "operator"
+    },
+    {
+      "id": 3,
+      "nome": "Milton Ferreira",
+      "email": "milton@transonibus.org.br",
+      "funcao": "manager"
+    },
+    {
+      "id": 4,
+      "nome": "Milton",
+      "email": "devimil@hotmai.com",
+      "funcao": "manager"
+    },
+    {
+      "id": 6,
+      "nome": "Milton Ferreira",
+      "email": "milton@transonibus.org.br",
+      "funcao": "manager"
+    },
+    {
+      "id": 7,
+      "nome": "Thadeu André Melo",
+      "email": "mobilidade@transonibus.org.br",
+      "funcao": "manager"
+    },
+    {
+      "id": 8,
+      "nome": "Victor Mesquita",
+      "email": "skovhm@gmail.com",
+      "funcao": "manager"
+    }
+  ],
+  "City": [
+    {
+      "id": 1,
+      "name": "Rio de Janeiro"
+    },
+    {
+      "id": 2,
+      "name": "Duque de Caxias"
+    },
+    {
+      "id": 3,
+      "name": "Nova Iguaçu"
+    },
+    {
+      "id": 4,
+      "name": "Nilópolis"
+    },
+    {
+      "id": 5,
+      "name": "Queimados"
+    },
+    {
+      "id": 6,
+      "name": "São João de Meriti"
+    },
+    {
+      "id": 7,
+      "name": "Belford Roxo"
+    },
+    {
+      "id": 8,
+      "name": "Japeri"
+    },
+    {
+      "id": 9,
+      "name": "Paracambi"
+    },
+    {
+      "id": 10,
+      "name": "Seropédica"
+    },
+    {
+      "id": 11,
+      "name": "Itaguaí"
+    },
+    {
+      "id": 12,
+      "name": "Miguel Pereira"
+    }
+  ],
+  "Company": [
+    {
+      "id": 11,
+      "name": "EXPRESSO SAO FRANCISCO",
+      "updatedAt": "2023-09-27T17:45:46.301Z"
+    },
+    {
+      "id": 17,
+      "name": "RIO D´OURO TRANSPORTES COLETIVOS LTDA",
+      "createdAt": "",
+      "updatedAt": "2023-09-27T14:50:10.113Z"
+    },
+    {
+      "id": 25,
+      "name": "TRANSPORTES MAGELI LTDA",
+      "createdAt": "",
+      "updatedAt": "2023-09-27T14:50:12.921Z"
+    }
+  ],
+  "Consortium": [
+    {
+      "id": 1,
+      "name": "Reserva de Vulcão"
+    },
+    {
+      "id": 2,
+      "name": "Reserva de Tinguá"
+    }
+  ],
+  "Issuer": [
+    {
+      "id": 1,
+      "name": "TransÔnibus"
+    }
+  ],
+  "Line": [
+    {
+      "id": "677",
+      "lineNumber": "167011",
+      "visa": "VILAR DOS TELES - CASTELO",
+      "seats": "45",
+      "masterCode": "7670",
+      "lineClass": "1",
+      "bu": "0",
+      "companyId": "25",
+      "cityId": "",
+      "consortium": "1",
+      "status": "1"
+    },
+    {
+      "id": "429",
+      "lineNumber": "1",
+      "visa": "SOARES NEIVA - NILOPOLIS",
+      "seats": "45",
+      "masterCode": "7435",
+      "lineClass": "2",
+      "bu": "1",
+      "companyId": "11",
+      "cityId": "4",
+      "consortium": "1",
+      "status": "1"
+    },
+    {
+      "id": "190",
+      "lineNumber": "7003",
+      "visa": "S. JOÃO - VILAR DOS TELES (V. PQ. ALIAN)",
+      "seats": "45",
+      "masterCode": "7190",
+      "lineClass": "2",
+      "bu": "1",
+      "companyId": "17",
+      "cityId": "6",
+      "consortium": "1",
+      "status": "1"
+    },
+    {
+      "id": "189",
+      "lineNumber": "7002",
+      "visa": "S. JOÃO - VILAR DOS TELES (V. BELKIS)",
+      "seats": "45",
+      "masterCode": "7189",
+      "lineClass": "2",
+      "bu": "1",
+      "companyId": "17",
+      "cityId": "6",
+      "consortium": "1",
+      "status": "1"
+    }
+  ],
+  "LineClass": [
+    {
+      "id": 1,
+      "name": "Intermunicipal"
+    },
+    {
+      "id": 2,
+      "name": "Municipal"
+    }
+  ]
+}
