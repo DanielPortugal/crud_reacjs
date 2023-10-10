@@ -9,19 +9,20 @@ class Consortium extends React.Component {
         this.state = {
             id: 0,
             name: '',
+            status: '',
             consorcios: [],
             modalAberta: false
         };
 
-        this.buscarConsorcios   = this.buscarConsorcios.bind(this);
-        this.buscarConsorcio    = this.buscarConsorcio.bind(this);
-        this.inserirConsorcio   = this.inserirConsorcio.bind(this);
+        this.buscarConsorcios = this.buscarConsorcios.bind(this);
+        this.buscarConsorcio = this.buscarConsorcio.bind(this);
+        this.inserirConsorcio = this.inserirConsorcio.bind(this);
         this.atualizarConsorcio = this.atualizarConsorcio.bind(this);
-        this.excluirConsorcio   = this.excluirConsorcio.bind(this);
-        this.renderTabela       = this.renderTabela.bind(this);
-        this.abrirModalInserir  = this.abrirModalInserir.bind(this);
-        this.fecharModal        = this.fecharModal.bind(this);
-        this.atualizaNome       = this.atualizaNome.bind(this);
+        this.renderTabela = this.renderTabela.bind(this);
+        this.abrirModalInserir = this.abrirModalInserir.bind(this);
+        this.fecharModal = this.fecharModal.bind(this);
+        this.atualizaNome = this.atualizaNome.bind(this);
+        this.atualizaStatus = this.atualizaStatus.bind(this);
     }
 
     componentDidMount() {
@@ -41,8 +42,9 @@ class Consortium extends React.Component {
             .then(response => response.json())
             .then(data => this.setState(
                 {
-                    id:     data.id,
-                    name:   data.name
+                    id: data.id,
+                    name: data.name,
+                    status: data.status
                 }));
     }
 
@@ -77,19 +79,6 @@ class Consortium extends React.Component {
         });
     }
 
-    excluirConsorcio = (id) => {
-        fetch('http://localhost:5000/Consortium/' + id, {
-            method: 'DELETE',
-        }).then((resposta) => {
-            if (resposta.ok) {
-                this.buscarConsorcios();
-                this.fecharModal();
-            } else {
-                alert(JSON.stringify(resposta));
-            }
-        });
-    }
-
     renderModal() {
         return (
             <Modal show={this.state.modalAberta} onHide={this.fecharModal}>
@@ -101,6 +90,14 @@ class Consortium extends React.Component {
                         <Form.Group>
                             <Form.Label>consorcio</Form.Label>
                             <Form.Control required type='text' placeholder='Nome da consórcio' value={this.state.name} onChange={this.atualizaNome} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Status</Form.Label>
+                            <Form.Select required name="status" value={this.state.status} onChange={this.atualizaStatus}>
+                                <option>Selecione</option>
+                                <option value="1">Ativo</option>
+                                <option value="0">Inativo</option>
+                            </Form.Select>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -133,8 +130,6 @@ class Consortium extends React.Component {
                                 <td>{consorcio.name} </td>
                                 <td>
                                     <Button variant="btn btn-outline-secondary" onClick={() => this.abrirModalAtualizar(consorcio.id)}>Atualizar</Button>
-                                    &nbsp;
-                                    <Button variant="btn btn-outline-danger" onClick={() => this.excluirConsorcio(consorcio.id)}>Excluir</Button>
                                 </td>
                             </tr>
                         ))
@@ -151,6 +146,12 @@ class Consortium extends React.Component {
     atualizaNome(e) {
         this.setState({
             name: e.target.value
+        });
+    }
+
+    atualizaStatus(e) {
+        this.setState({
+            status: e.target.value
         });
     }
 
@@ -173,6 +174,7 @@ class Consortium extends React.Component {
         this.setState({
             id: 0,
             name: "",
+            status: "",
             modalAberta: false
         })
     }
@@ -180,7 +182,8 @@ class Consortium extends React.Component {
     submit = () => {
         const consorcio = {
             id: this.state.id,
-            name: this.state.name
+            name: this.state.name,
+            status: this.state.status
         };
 
         if (this.state.id === 0) {

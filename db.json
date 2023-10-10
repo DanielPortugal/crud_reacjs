@@ -46,86 +46,104 @@
   "City": [
     {
       "id": 1,
-      "name": "Rio de Janeiro"
+      "name": "Rio de Janeiro",
+      "status": "1"
     },
     {
       "id": 2,
-      "name": "Duque de Caxias"
+      "name": "Duque de Caxias",
+      "status": "1"
     },
     {
       "id": 3,
-      "name": "Nova Iguaçu"
+      "name": "Nova Iguaçu",
+      "status": "1"
     },
     {
       "id": 4,
-      "name": "Nilópolis"
+      "name": "Nilópolis",
+      "status": "1"
     },
     {
       "id": 5,
-      "name": "Queimados"
+      "name": "Queimados",
+      "status": "1"
     },
     {
       "id": 6,
-      "name": "São João de Meriti"
+      "name": "São João de Meriti",
+      "status": "1"
     },
     {
       "id": 7,
-      "name": "Belford Roxo"
+      "name": "Belford Roxo",
+      "status": "1"
     },
     {
       "id": 8,
-      "name": "Japeri"
+      "name": "Japeri",
+      "status": "1"
     },
     {
       "id": 9,
-      "name": "Paracambi"
+      "name": "Paracambi",
+      "status": "1"
     },
     {
       "id": 10,
-      "name": "Seropédica"
+      "name": "Seropédica",
+      "status": "1"
     },
     {
       "id": 11,
-      "name": "Itaguaí"
+      "name": "Itaguaí",
+      "status": "1"
     },
     {
       "id": 12,
-      "name": "Miguel Pereira"
+      "name": "Miguel Pereira",
+      "status": "1"
     }
   ],
   "Company": [
     {
       "id": 11,
       "name": "EXPRESSO SAO FRANCISCO",
-      "updatedAt": "2023-09-27T17:45:46.301Z"
+      "status": "1",
+      "updatedAt": "2023-10-10T14:51:59.483Z"
     },
     {
       "id": 17,
       "name": "RIO D´OURO TRANSPORTES COLETIVOS LTDA",
+      "status": "1",
       "createdAt": "",
-      "updatedAt": "2023-09-27T14:50:10.113Z"
+      "updatedAt": "2023-10-10T14:52:04.475Z"
     },
     {
       "id": 25,
       "name": "TRANSPORTES MAGELI LTDA",
+      "status": "1",
       "createdAt": "",
-      "updatedAt": "2023-09-27T14:50:12.921Z"
+      "updatedAt": "2023-10-10T14:52:13.811Z"
     }
   ],
   "Consortium": [
     {
       "id": 1,
-      "name": "Reserva de Vulcão"
+      "name": "Reserva de Vulcão",
+      "status": "1"
     },
     {
       "id": 2,
-      "name": "Reserva de Tinguá"
+      "name": "Reserva de Tinguá",
+      "status": "1"
     }
   ],
   "Issuer": [
     {
       "id": 1,
-      "name": "TransÔnibus"
+      "name": "TransÔnibus",
+      "status": "1"
     }
   ],
   "Line": [
@@ -185,11 +203,13 @@
   "LineClass": [
     {
       "id": 1,
-      "name": "Intermunicipal"
+      "name": "Intermunicipal",
+      "status": "1"
     },
     {
       "id": 2,
-      "name": "Municipal"
+      "name": "Municipal",
+      "status": "1"
     }
   ]
 }

@@ -12,8 +12,12 @@ class User extends React.Component {
             nome: '',
             email: '',
             usuarios: [],
-            modalAberta: false
+            modalAberta: false,
+
+            modalAtualizacao: false
         };
+
+    
 
         this.buscarUsuarios = this.buscarUsuarios.bind(this);
         this.buscarUsuario = this.buscarUsuario.bind(this);
@@ -26,6 +30,7 @@ class User extends React.Component {
         this.atualizaNome = this.atualizaNome.bind(this);
         this.atualizaEmail = this.atualizaEmail.bind(this);
         this.atualizaFuncao = this.atualizaFuncao.bind(this);
+
     }
 
 
@@ -109,7 +114,7 @@ class User extends React.Component {
                     <Form id="modalForm" onSubmit={this.submit}>
                         <Form.Group>
                             <Form.Label>Nome</Form.Label>
-                            <Form.Control required type='text' placeholder='Nome do User' value={this.state.nome} onChange={this.atualizaNome} />
+                            <Form.Control disabled={this.state.modalAtualizacao} required type='text' placeholder='Nome do User' value={this.state.nome} onChange={this.atualizaNome} />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>E-mail</Form.Label>
@@ -194,14 +199,16 @@ class User extends React.Component {
 
     abrirModalInserir() {
         this.setState({
-            modalAberta: true
+            modalAberta: true,
+            modalAtualizacao: false
         })
     }
 
     abrirModalAtualizar(id) {
         this.setState({
             id: id,
-            modalAberta: true
+            modalAberta: true,
+            modalAtualizacao: true 
         });
 
         this.buscarUsuario(id);
@@ -228,8 +235,10 @@ class User extends React.Component {
 
         if (this.state.id === 0) {
             this.inserirUsuario(User);
+
         } else {
             this.atualizarUsuario(User);
+
         }
     }
 

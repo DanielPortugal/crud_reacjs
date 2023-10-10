@@ -10,22 +10,24 @@ class Company extends React.Component {
             idInc: 0,
             id: '',
             name: '',
+            status: '',
             createdAt: '',
             updatedAt: '',
             empresas: [],
-            modalAberta: false
+            modalAberta: false,
+            modalAtualizacao: false
         };
 
         this.buscarEmpresas = this.buscarEmpresas.bind(this);
         this.buscarEmpresa = this.buscarEmpresa.bind(this);
         this.inserirEmpresa = this.inserirEmpresa.bind(this);
         this.atualizarEmpresa = this.atualizarEmpresa.bind(this);
-        this.excluirEmpresa = this.excluirEmpresa.bind(this);
         this.renderTabela = this.renderTabela.bind(this);
         this.abrirModalInserir = this.abrirModalInserir.bind(this);
         this.fecharModal = this.fecharModal.bind(this);
         this.atualizaId = this.atualizaId.bind(this);
         this.atualizaNome = this.atualizaNome.bind(this);
+        this.atualizaStatus = this.atualizaStatus.bind(this);
 
     }
 
@@ -49,6 +51,7 @@ class Company extends React.Component {
                     idInc: data.idInc,
                     id: data.id,
                     name: data.name,
+                    status: data.status,
                     createdAt: data.createdAt,
                     updatedAt: data.updatedAt
                 }));
@@ -87,19 +90,6 @@ class Company extends React.Component {
         });
     }
 
-    excluirEmpresa = (id) => {
-        fetch('http://localhost:5000/Company/' + id, {
-            method: 'DELETE',
-        }).then((resposta) => {
-            if (resposta.ok) {
-                this.buscarEmpresas();
-                this.fecharModal();
-            } else {
-                alert(JSON.stringify(resposta));
-            }
-        });
-    }
-
     renderModal() {
         return (
             <Modal show={this.state.modalAberta} onHide={this.fecharModal}>
@@ -110,11 +100,19 @@ class Company extends React.Component {
                     <Form id="modalForm" onSubmit={this.submit}>
                         <Form.Group>
                             <Form.Label>Identificação</Form.Label>
-                            <Form.Control required type='number' placeholder='Identificação' value={this.state.id} onChange={this.atualizaId} />
+                            <Form.Control disabled={this.state.modalAtualizacao} required type='number' placeholder='Identificação' value={this.state.id} onChange={this.atualizaId} />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Empresa</Form.Label>
                             <Form.Control required type='text' placeholder='Nome da Empresa' value={this.state.name} onChange={this.atualizaNome} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Status</Form.Label>
+                            <Form.Select required name="status" value={this.state.status} onChange={this.atualizaStatus}>
+                                <option>Selecione</option>
+                                <option value="1">Ativo</option>
+                                <option value="0">Inativo</option>
+                            </Form.Select>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -149,8 +147,6 @@ class Company extends React.Component {
                                 <td>{empresa.name.toUpperCase()} </td>
                                 <td>
                                     <Button variant="btn btn-outline-secondary" onClick={() => this.abrirModalAtualizar(empresa.id)}>Atualizar</Button>
-                                    &nbsp;
-                                    <Button variant="btn btn-outline-danger" onClick={() => this.excluirEmpresa(empresa.id)}>Excluir</Button>
                                 </td>
                             </tr>
                         ))
@@ -175,16 +171,24 @@ class Company extends React.Component {
         });
     }
 
+    atualizaStatus(e) {
+        this.setState({
+            status: e.target.value
+        });
+    }
+
     abrirModalInserir() {
         this.setState({
-            modalAberta: true
+            modalAberta: true,
+            modalAtualizacao: false
         })
     }
 
     abrirModalAtualizar(id) {
         this.setState({
             id: id,
-            modalAberta: true
+            modalAberta: true,
+            modalAtualizacao: true
         });
 
         this.buscarEmpresa(id);
@@ -194,6 +198,7 @@ class Company extends React.Component {
         this.setState({
             id: 0,
             name: "",
+            status: "",
             modalAberta: false
         })
     }
@@ -202,6 +207,7 @@ class Company extends React.Component {
         const empresa = {
             id: this.state.id,
             name: this.state.name.toUpperCase(),
+            status: this.state.status,
             createdAt: this.state.createdAt,
             updatedAt: new Date()
         };

@@ -29,14 +29,14 @@ class Line extends React.Component {
             tipos: [],
             cidades: [],
             consorcios: [],
-            modalAberta: false
+            modalAberta: false,
+            modalAtualizacao: false
         };
 
         this.buscarLinhas = this.buscarLinhas.bind(this);
         this.buscarLinha = this.buscarLinha.bind(this);
         this.inserirLinha = this.inserirLinha.bind(this);
         this.atualizarLinha = this.atualizarLinha.bind(this);
-        this.excluirLinha = this.excluirLinha.bind(this);
         this.renderTabela = this.renderTabela.bind(this);
         this.abrirModalInserir = this.abrirModalInserir.bind(this);
         this.fecharModal = this.fecharModal.bind(this);
@@ -156,19 +156,6 @@ class Line extends React.Component {
         });
     }
 
-    excluirLinha = (id) => {
-        fetch('http://localhost:5000/Line/' + id, {
-            method: 'DELETE',
-        }).then((resposta) => {
-            if (resposta.ok) {
-                this.buscarLinhas();
-                this.fecharModal();
-            } else {
-                alert(JSON.stringify(resposta));
-            }
-        });
-    }
-
     renderModal() {
         return (
             <Modal show={this.state.modalAberta} onHide={this.fecharModal}>
@@ -179,7 +166,7 @@ class Line extends React.Component {
                     <Form id="modalForm" onSubmit={this.submit}>
                         <Form.Group>
                             <Form.Label>Código Detalhado</Form.Label>
-                            <Form.Control required type='number' placeholder='Código Detalhado' value={this.state.id} onChange={this.atualizaId} />
+                            <Form.Control disabled={this.state.modalAtualizacao} required type='number' placeholder='Código Detalhado' value={this.state.id} onChange={this.atualizaId} />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Empresa</Form.Label>
@@ -299,8 +286,6 @@ class Line extends React.Component {
                                 <td>{Line.cityId} </td>
                                 <td>
                                     <Button variant="btn btn-outline-secondary" onClick={() => this.abrirModalAtualizar(Line.id)}>Atualizar</Button>
-                                    &nbsp;
-                                    <Button variant="btn btn-outline-danger" onClick={() => this.excluirLinha(Line.id)}>Excluir</Button>
 
                                 </td>
                             </tr>
@@ -383,14 +368,16 @@ class Line extends React.Component {
 
     abrirModalInserir() {
         this.setState({
-            modalAberta: true
+            modalAberta: true,
+            modalAtualizacao: false
         })
     }
 
     abrirModalAtualizar(id) {
         this.setState({
             id: id,
-            modalAberta: true
+            modalAberta: true,
+            modalAtualizacao: true 
         });
 
         this.buscarLinha(id);

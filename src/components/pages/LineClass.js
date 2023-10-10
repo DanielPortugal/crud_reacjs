@@ -9,6 +9,7 @@ class LineClass extends React.Component {
         this.state = {
             id: 0,
             name: '',
+            status: '',
             linhas: [],
             modalAberta: false
         };
@@ -17,11 +18,11 @@ class LineClass extends React.Component {
         this.buscarLinha = this.buscarLinha.bind(this);
         this.inserirLinha = this.inserirLinha.bind(this);
         this.atualizarLinha = this.atualizarLinha.bind(this);
-        this.excluirLinha = this.excluirLinha.bind(this);
         this.renderTabela = this.renderTabela.bind(this);
         this.abrirModalInserir = this.abrirModalInserir.bind(this);
         this.fecharModal = this.fecharModal.bind(this);
         this.atualizaNome = this.atualizaNome.bind(this);
+        this.atualizaStatus = this.atualizaStatus.bind(this);
     }
 
     componentDidMount() {
@@ -42,7 +43,8 @@ class LineClass extends React.Component {
             .then(data => this.setState(
                 {
                     id: data.id,
-                    name: data.name
+                    name: data.name,
+                    status: data.status
                 }));
     }
 
@@ -77,19 +79,6 @@ class LineClass extends React.Component {
         });
     }
 
-    excluirLinha = (id) => {
-        fetch('http://localhost:5000/LineClass/' + id, {
-            method: 'DELETE',
-        }).then((resposta) => {
-            if (resposta.ok) {
-                this.buscarLinhas();
-                this.fecharModal();
-            } else {
-                alert(JSON.stringify(resposta));
-            }
-        });
-    }
-
     renderModal() {
         return (
             <Modal show={this.state.modalAberta} onHide={this.fecharModal}>
@@ -101,6 +90,14 @@ class LineClass extends React.Component {
                         <Form.Group>
                             <Form.Label>linha</Form.Label>
                             <Form.Control required type='text' placeholder='Tipo de Linha' value={this.state.name} onChange={this.atualizaNome} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Status</Form.Label>
+                            <Form.Select required name="status" value={this.state.status} onChange={this.atualizaStatus}>
+                                <option>Selecione</option>
+                                <option value="1">Ativo</option>
+                                <option value="0">Inativo</option>
+                            </Form.Select>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -133,8 +130,6 @@ class LineClass extends React.Component {
                                 <td>{linha.name} </td>
                                 <td>
                                     <Button variant="btn btn-outline-secondary" onClick={() => this.abrirModalAtualizar(linha.id)}>Atualizar</Button>
-                                    &nbsp;
-                                    <Button variant="btn btn-outline-danger" onClick={() => this.excluirLinha(linha.id)}>Excluir</Button>
                                 </td>
                             </tr>
                         ))
@@ -151,6 +146,12 @@ class LineClass extends React.Component {
     atualizaNome(e) {
         this.setState({
             name: e.target.value
+        });
+    }
+
+    atualizaStatus(e) {
+        this.setState({
+            status: e.target.value
         });
     }
 
@@ -173,6 +174,7 @@ class LineClass extends React.Component {
         this.setState({
             id: 0,
             name: "",
+            status: "",
             modalAberta: false
         })
     }
@@ -180,7 +182,8 @@ class LineClass extends React.Component {
     submit = () => {
         const linha = {
             id: this.state.id,
-            name: this.state.name
+            name: this.state.name,
+            status: this.state.status
         };
 
         if (this.state.id === 0) {
