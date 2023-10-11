@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { } from 'react'
 import { Button, Form, Modal, Table } from 'react-bootstrap';
 
 
@@ -13,6 +13,7 @@ class City extends React.Component {
             name: '',
             status: '',
             cidades: [],
+            cidadesFiltradas: [],
             modalAberta: false
         };
 
@@ -21,6 +22,7 @@ class City extends React.Component {
         this.inserirCidade = this.inserirCidade.bind(this);
         this.atualizarCidade = this.atualizarCidade.bind(this);
         this.renderTabela = this.renderTabela.bind(this);
+        this.renderBusca = this.renderBusca.bind(this);
         this.abrirModalInserir = this.abrirModalInserir.bind(this);
         this.fecharModal = this.fecharModal.bind(this);
         this.atualizaNome = this.atualizaNome.bind(this);
@@ -119,9 +121,20 @@ class City extends React.Component {
         );
     }
 
+
+    renderBusca() {
+
+        return (
+            <>
+                <div>
+                    <h1>Search</h1>
+                </div>
+            </>
+        )
+    }
+
     renderTabela() {
         return (
-
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -208,6 +221,7 @@ class City extends React.Component {
                 <br />
                 <Button variant="primary" className="button-novo" onClick={this.abrirModalInserir}>Adicionar Cidade</Button>
                 <p></p>
+                {this.renderBusca()}
                 {this.renderTabela()}
                 {this.renderModal()}
 

@@ -9,8 +9,6 @@ import Consortium from "./components/pages/Consortium";
 import Issuer from "./components/pages/Issuer";
 import Line from "./components/pages/Line";
 import LineClass from "./components/pages/LineClass";
-import User from "./components/pages/User";
-
 
 
 function App() {
@@ -40,9 +38,6 @@ function App() {
           <Nav.Item>
             <Nav.Link as={Link} to="/tlinha">Tipo de Linha</Nav.Link>
           </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/usuario">Usuário</Nav.Link>
-          </Nav.Item>
         </Nav>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -52,7 +47,6 @@ function App() {
           <Route path='/emissor' element={<Issuer />} />
           <Route path='/linha' element={<Line />} />
           <Route path='/tlinha' element={<LineClass />} />
-          <Route path='/usuario' element={<User />} />
         </Routes>
       </BrowserRouter>
     </div>
