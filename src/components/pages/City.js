@@ -13,7 +13,6 @@ class City extends React.Component {
             name: '',
             status: '',
             cidades: [],
-            cidadesFiltradas: [],
             modalAberta: false
         };
 
@@ -124,11 +123,15 @@ class City extends React.Component {
 
     renderBusca() {
 
+
         return (
             <>
-                <div>
-                    <h1>Search</h1>
-                </div>
+                <input
+                    type='text'
+                   // value={busca}
+                    placeholder='Busque aqui'
+                   // onChange={(ev) => setBusca(ev.target.value)}
+                />
             </>
         )
     }
